@@ -1,0 +1,184 @@
+<head>
+<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:400,700" rel="stylesheet">
+<link href='style.css' rel='stylesheet' type='text/css'>
+<title>Mentalhealth Quiz</title>
+<link rel="icon" type="x-icon" href="icon.png">
+<link rel="shortcut icon" type="x-icon" href="icon.png">
+<meta charset="utf-8">
+<script>
+  version = "Test Edition #1" //Remember to update this before making changes to the test itself!
+</script>
+	
+</head>
+<!-- <script type="application/javascript"
+        src="ideologies.js">
+</script> -->
+
+
+<body>
+<h1>Results</h1>
+<hr>
+
+  <h2>You're a: <span class="weight-300" id="diplomatic-label"></span> <span class="weight-300" id="economic-label"></span></h2>
+
+<br>
+<p>You can send these results by copying and pasting the URL at the top of the page, or by screenshotting the page. There are also explanations of the spectrums further down the page, and a short form at the bottom. Thank you for talking the test!</p>
+	
+<hr/>
+	
+
+<h2>Personality: </h2>
+<div class="axis">
+    <img id="img-equality" src="value_images/equality.svg" height="128pt"/>
+    <div class="bar equality" id="bar-equality"><div class="text-wrapper" id="equality"></div></div>
+    <div class="bar wealth" id="bar-wealth"><div class="text-wrapper" id="wealth"></div></div>
+    <img id="img-wealth" src="value_images/wealth.svg" height="128pt"/>
+</div>
+<h2>Mentalhealth Quiz: </h2>
+<div class="axis">
+    <img id="img-might" src="value_images/might.svg" height="128pt"/>
+    <div class="bar might" id="bar-might"><div class="text-wrapper" id="might"></div></div>
+    <div class="bar peace" id="bar-peace"><div class="text-wrapper" id="peace"></div></div>
+    <img id="img-peace" src="value_images/peace.svg" height="128pt"/>
+</div>
+<h2>Mental Health:</h2>
+<div class="axis">
+    <img id="img-liberty" src="value_images/liberty.svg" height="128pt"/>
+    <div class="bar liberty" id="bar-liberty"><div class="text-wrapper" id="liberty"></div></div>
+    <div class="bar authority" id="bar-authority"><div class="text-wrapper" id="authority"></div></div>
+    <img id="img-authority" src="value_images/authority.svg" height="128pt"/>
+</div>
+	
+<div hidden>
+      <h2>Societal Axis: <span class="weight-300" id="society-label"></span></h2>
+ <div class="axis">
+    <img id="img-tradition" src="value_images/tradition.svg" height="128pt"/>
+    <div class="bar tradition" id="bar-tradition"><div class="text-wrapper" id="tradition"></div></div>
+    <div class="bar progress" id="bar-progress"><div class="text-wrapper" id="progress"></div></div>
+    <img id="img-progress" src="value_images/progress.svg" height="128pt"/>
+</div> 
+	
+<hr/>
+<img src="" id="banner">
+</div>
+	
+<h2>Explanation:</h2>
+ <p class="value-description"><b style="color:#d32f2f;">Introverted vs Extroverted</b> <br/>
+        Those with a higher score on Introverted are likely to be more inward-focused, and generally prefers to spend time alone rather than spending time on socialization. Those with a higher score on Extroverted tend to be more socialable and talkative.</p>
+    
+    <p class="value-description"><b style="color:#f57c00;">Involved vs Isolated</b><br/>
+        Those with higher score on Involved tend to be more active and are more involved with people around them. Those with a higher score on Isolated tend to stay away from people who aren't particularly close to them.</p>
+    
+    <p class="value-description"><b style="color:#fbc02d;">Healthy vs Stressed</b><br/>
+        Those with higher score on Healthy tend to be more optimistic and generally more sastified with their daily life and future. Those with a higher score on Stressed tend to be less happy in general, and are less hopeful about life as a whole.</p>
+
+<h2>The test says I'm lonely and I agree. What now?</h2>
+    <p> If you feel that you're lonely, don't hesitate to find someone to talk to. It could be your parents or your teachers, or even people from a forum online, like Reddit. You might be able to find a good solution.</p>
+	
+
+<hr/>
+<button class="button" onclick="location.href='viewcity.php';">Back</button> <br>
+	
+<script>
+    function getQueryVariable(variable)
+    {
+           var query = window.location.search.substring(1)
+           var vars = query.split("&")
+           for (var i=0;i<vars.length;i++) {
+                   var pair = vars[i].split("=")
+                   if(pair[0] == variable) {return pair[1]}
+           }
+           return(NaN);
+    }
+
+    function setBarValue(name, value) {
+        innerel = document.getElementById(name)
+        outerel = document.getElementById("bar-" + name)
+        outerel.style.width = (value + "%")
+        innerel.innerHTML = (value + "%")
+        if (innerel.offsetWidth + 20 > outerel.offsetWidth) {
+            innerel.style.visibility = "hidden"
+        }
+    }
+
+    econArray = ["Loner","Introvert","Introvert","Ambivert","Extrovert","Extrovert","Outgoer"]
+    diplArray = ["Lonely","Isolated","Semi-Isolated","Balanced","Involved","Sociable","Energetic"]
+    govtArray = ["Very Stressed","Stressed","Somewhat Stressed","Moderate","Moderately Healthy","Healthy","Very Healthy"]
+    sctyArray = ["Revolutionary","Very Progressive","Progressive","Neutral","Traditional","Very Traditional","Reactionary"]
+
+    function setLabel(val,ary) {
+        if (val > 100) { return "" } else
+        if (val > 90) { return ary[0] } else
+        if (val > 75) { return ary[1] } else
+        if (val > 60) { return ary[2] } else
+        if (val >= 40) { return ary[3] } else
+        if (val >= 25) { return ary[4] } else
+        if (val >= 10) { return ary[5] } else
+        if (val >= 0) { return ary[6] } else
+        	{return ""}
+    }
+
+    equality  = getQueryVariable("e")
+    peace     = getQueryVariable("d")
+    liberty   = getQueryVariable("g")
+    progress  = getQueryVariable("s")
+    wealth    = (100 - equality).toFixed(1)
+    might     = (100 - peace   ).toFixed(1)
+    authority = (100 - liberty ).toFixed(1)
+    tradition = (100 - progress).toFixed(1)
+
+    setBarValue("equality", equality)
+    setBarValue("wealth", wealth)
+    setBarValue("peace", peace)
+    setBarValue("might", might)
+    setBarValue("liberty", liberty)
+    setBarValue("authority", authority)
+    setBarValue("progress", progress)
+    setBarValue("tradition", tradition)
+
+    document.getElementById("economic-label").innerHTML = setLabel(equality, econArray)
+    document.getElementById("diplomatic-label").innerHTML = setLabel(peace, diplArray)
+    document.getElementById("state-label").innerHTML = setLabel(liberty, govtArray)
+    document.getElementById("society-label").innerHTML = setLabel(progress, sctyArray)
+    
+    //Ideologies
+	
+    ideology = ""
+    ideodesc = ""
+    ideodist = Infinity
+    for (var i = 0; i < ideologies.length; i++) {
+        dist = 0
+        dist += Math.pow(Math.abs(ideologies[i].stats.econ - equality), 2)
+        dist += Math.pow(Math.abs(ideologies[i].stats.dipl - peace), 2)
+        dist += Math.pow(Math.abs(ideologies[i].stats.govt - liberty), 2)
+        dist += Math.pow(Math.abs(ideologies[i].stats.scty - progress), 2)
+        if (dist < ideodist) {
+            ideology = ideologies[i].name
+            ideodesc = ideologies[i].desc
+            ideodist = dist
+        }
+    }
+    document.getElementById("ideology-label").innerHTML = ideology
+    document.getElementById("ideodesc-label").innerHTML = ideodesc
+
+     ideologies = [
+        { "name": "The Introverted",
+        "desc": "You like to spend time with yourself, and enjoy focusing internally. You tend to interact with people you know, rather than a stranger.",
+        "stats": { "econ": 80, "dipl": 65, "govt": 50, "scty": 50 }},
+    
+        { "name": "The Energetic",
+        "desc": "You are active in social interactions, and talk with various different people. Loneliness is not an issue for you.",
+        "stats": { "econ": 20, "dipl": 10, "govt": 50, "scty": 50 }},
+    
+        { "name": "The Balanced",
+        "desc": "You are balanced in the spectrums below. You are moderately involved with other people, and is also an ambivert.",
+        "stats": { "econ": 50, "dipl": 50, "govt": 50, "scty": 50 }},
+    
+        { "name": "The Seperated",
+        "desc": "You might be seperated from other people, and might feel lonely in daily life. If you frequently feel lonely, you might want to reach out to other people.",
+        "stats": { "econ": 30, "dipl": 100, "govt": 80, "scty": 50 }}
+    ];
+	
+    
+    </script>
+</body>
