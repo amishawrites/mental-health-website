@@ -25,8 +25,3 @@
 <p>If you would like to contribute to the Mental Health Website project, please feel free to submit a pull request or raise any issues. All contributions are welcome!</p>
 
 
-<h2>Acknowledgments</h2>
-<ul>
-  
-  <li>Thanks to the open source community for their contributions to the software and tools used in this project.</li>
-</ul>
